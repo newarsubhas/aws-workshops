@@ -5,6 +5,7 @@ To set up a Lambda function, you need to grant that function a role.
 
 ```shell
 cat > iamtrustdocument.json <<EOF
+
 {
     "Version": "2012-10-17",
     "Statement": {
@@ -13,6 +14,7 @@ cat > iamtrustdocument.json <<EOF
       "Action": "sts:AssumeRole"
     }
 }
+
 EOF
 ```
 ```shell
@@ -32,10 +34,12 @@ cat > basiciampolicy.json <<EOF
     }
   ]
 }
+
 EOF
 ```
 ```shell
 cat > createiamrole.sh <<EOF
+
 #!/usr/bin/env bash
 set -e
 ROLE_ARN=$(aws iam list-roles --query 'Roles[?RoleName==`lambda_basic_execution`].Arn' --output text)
@@ -50,6 +54,7 @@ else
     echo "Created a new role called lambda_basic_execution. The ARN for this is:
 ${ROLE_ARN}"
 fi
+
 EOF
 ```
 * now this will be the final step to create role using created above resources .
